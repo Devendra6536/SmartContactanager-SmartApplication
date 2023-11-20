@@ -57,7 +57,7 @@ $.ajax(
                 console.log(response.error.reason);
                 console.log(response.error.metadata.order_id);
                 console.log(response.error.metadata.payment_id);
-                console.log('Payment failed');
+                console.log('Payment are getting failed');
                 alert("Oops payment failed");
             });
 
