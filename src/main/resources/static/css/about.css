@@ -1,0 +1,28 @@
+
+.dp_parent_container{
+	width:100%;
+	height:99vh;
+	background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url(../image/contact1.1.avif);
+	background-size: cover;
+	color:white;
+	padding:25px;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	margin-top:15px;
+}
+
+
+
+@media only screen and (max-width:600px){
+	.dp_parent_container{
+		margin:0;
+		padding: 10px;
+		width: 100%;
+		height: 900px;
+	}
+	.dp{
+		width: 20rem;
+		height: 20rem;
+	}
+}

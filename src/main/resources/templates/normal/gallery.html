@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>User dashboard</title>
+</head>
+<body>
+
+	<section>
+		<h1 class="text-center">Gallery</h1>
+				
+		<div  class="containers">
+			<div th:each=" e : ${jpgImageList}" class="container_box ">
+				<img th:src="'../Gallery1/Photo'+${e}+'.jpg'" th:onclick="openImage([[${e}-1]])">
+				<p th:text="'Photo'+${e}+'.jpg'"></p>
+			</div>
+		</div>
+		<div  class="containers">
+			<div th:each=" e : ${webpImageList}" class="container_box">
+				<img th:src="'../Gallery1/Photo'+${e}+'.webp'" th:onclick="openImage([[${e}-2]])">
+				<p th:text="'Photo'+${e}+'.webp'"></p>
+			</div>
+		</div>
+		
+	</section>
+	
+</body>
+</html>

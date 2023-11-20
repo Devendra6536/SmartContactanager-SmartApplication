@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/signin.css}" media="all" />
+	<link rel="stylesheet" th:href="@{/css/home.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/viewcontact.css}" media="all" />
+    <style>
+		
+		
+	</style>
+    <title th:text="${title}"> Smart contact manager</title>
+  </head>
+  <body>
+
+    	 <nav class="navbar navbar-expand-lg fixed-top navbar-dark"style="background-color: #25236b;">
+  <a class="navbar-brand" th:href="@{/}">Smart Contact Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon" ></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto text-uppercase">
+      <li class="nav-item ">
+        <a class="nav-link nav_link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link nav_link" th:href="@{/user/index}">Dashboard <span class="sr-only">(current)</span></a>
+      </li> -->
+      <li class="nav-item ">
+        <a class="nav-link nav_link" th:href="@{/user/profile}" th:text="${user.username}" ></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link nav_link" th:href="@{/logout}">Logout</a>
+      </li>
+    </ul>
+     
+  </div>
+</nav>
+	
+	<div class="sidebar" id="sidebar">
+		<div class="close_sidebar">
+			<button type="button" class="close-btn" data-dismiss="alert" aria-label="Close" onclick="closeSidebar()">
+					 <span aria-hidden="true">&times;</span>
+		    </button>
+		</div>
+		<div>
+		<div onclick="closeSidebar()">
+			<a th:href="@{/user/index}" class="item nav_link"><i class="fa-solid fa-house"></i></i>Home</a>
+			<a th:href="@{/user/gallery}" class="item nav_link"><i class="fa-solid fa-computer"></i></i>Services</a>
+		</div>
+		<a th:href="@{/user/view-contacts/0}" class="item nav_link"><i class="fa-solid fa-address-card"></i>View contacts</a>
+		<a th:href="@{/user/addcontact}" class="item nav_link" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add contacts</a>
+		
+		<div class="dropdown">
+		  <a class="dropdown-toggle nav_link" th:href="@{/user/profile}" role="button" data-toggle="dropdown" aria-expanded="false">
+		   <i class="fa-solid fa-circle-user"></i>Your profile </a>
+		
+		  <div class="dropdown-menu" onclick="closeSidebar()">
+		    <!--<a class="dropdown-item nav_link" th:href="@{/user/gallery}" >Gallery</a>-->
+		    <a class="dropdown-item nav_link" th:href="@{/user/profile}">About</a>
+		    <a class="dropdown-item nav_link" th:href="@{/user/gallery}">Say Something</a>
+		    <a class="dropdown-item nav_link" th:href="@{#}">Something else here</a>
+		  </div>
+	</div>
+	<a th:href="@{/user/open-setting}" class="item nav_link" ><i class="fa-solid fa-gears"></i>Setting</a>
+		<a th:href="@{/logout}" class="item nav_link"><i class="fa-solid fa-right-from-bracket" onclick="closeSidebar()"></i>Logout</a>
+		<a th:href="@{/user/faq}" class="item nav_link"><i class="fa-solid fa-right-from-bracket"></i>faq</a>
+		</div>
+		<div class="divider"></div>
+		
+	</div>
+	<div class="content" id="content">
+		
+		<div class="togglemenu_bar"><i class="fa fa-bars mt-3" style="font-size:30px;cursor: pointer;margin-top:120px;position:fixed;" onclick="toggleSidebar()"></i></div>
+	    <div class="container" th:replace="${content}">
+	    </div>
+	    
+	   <div class="help_container" onclick="openChatBox()"></div>
+	</div>    
+    
+
+	
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+    
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<script type="text/javascript" th:src="@{/js/payment.js}"></script>
+    <script type="text/javascript" th:src="@{/js/faq.js}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    	function deleteContact(cid){
+    		swal({
+    			  title: "Are you sure?",
+    			  text: "Once deleted, you will not be able to recover this imaginary file!",
+    			  icon: "warning",
+    			  buttons: true,
+    			  dangerMode: true,
+    			})
+    			.then((willDelete) => {
+    			  if (willDelete) {
+    				  window.location="/user/delete-contact/"+cid;
+    			  } else {
+    			    swal("Your contact is safe!");
+    			  }
+    			});
+    	}
+    </script>
+  </body>
+</html>

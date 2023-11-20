@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<section>
+
+
+
+
+
+
+		<div role="alert" th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage.type}" 
+		style="position: absolute; top: 9%; left: 77%;background-color: red; color: white; padding: 20px; font-weight: 700;border-radius: 5px;">
+				<h3>Change password?</h3>
+				   	<p class="text-center" th:text="${session.PasswdChangemessage.content}"></p>
+				    <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+
+		<div class="container" style="margin-top: 150px;">
+
+			
+			<div class="row ">
+				<div class="col-md-5 offset-md-4">
+					<div class="card">
+						<div class="card-body">
+							<h1 class="text-center mt-2 text-primary text-upper">Change Password</h1>
+							<form th:action="@{/user/change-password}" action="#" method="POST" class="mt-5">
+								<div class="form-group">
+									<input type="password" class="form-control" name="oldPassword" placeholder="Enter old password">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="newPassword" placeholder="Enter new password">
+
+									<!-- this is adding a message in case of mathing old and new password -->
+									<p th:if="${session.samePasswdCase}" style="color: red;">**
+										<span th:text="${session.samePasswdCase}" ></span>
+										<th:block th:text="${@sessionHelper.removeAttributeThrroughSession1()}"></th:block>
+									</p>
+								</div>
+
+								
+								<div class="form-group">
+									<input type="password" class="form-control" name="confirmPassword" placeholder="confirm your  password">
+									<!-- this is adding a message in case of mathing old and new password -->
+									<p th:if="${session.confrimPasswdmessage}" style="color: red;">**
+										<span th:text="${session.confrimPasswdmessage}" ></span>
+										<th:block th:text="${@sessionHelper.removeAttributeThrroughSession1()}"></th:block>
+									</p>
+								</div>
+								
+								<!-- <div  th:if="${session.samePasswdCase}">
+									<p th:text="${session.samePasswdCase}" style="color: red;"></p>
+									<th:block th:text="${@sessionHelper.removeAttributeThrroughSession1()}"></th:block>
+								</div> -->
+
+
+								<div class="container text-center">
+									<button type="submit" class="btn bg-primary login-button text-white mt-4" >Change</button>
+									<button type="reset" class="btn btn-warning login-button mt-4" >Reset</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

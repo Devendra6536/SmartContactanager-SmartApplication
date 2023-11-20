@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css" media="all" />
+<link rel="stylesheet" th:href="@{/css/signin.css}" media="all" />
+<title></title>
+</head>
+<body >
+
+	<section class="sign_up_section" id="makeBL" style="background: url('../image/container_image1.jpg'); background-size: cover; background-color: #253973;" >
+		
+		
+		
+		<div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage}" 
+			 style="position: absolute; top: 12%; left: 80%; background-color: #ffc107; color: black; padding: 20px; font-weight: 700; border-radius: 5px;">
+			 <h3>Forgot password?</h3>
+			<p class="text-center" th:text="${session.PasswdChangemessage}"></p>
+		 <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+		
+		
+		
+		
+		<div class="container sign_in_box"  style="height:920px; display:flex; justify-content: center;align-items: center;">
+			<div class="col-md-6 offset-md-1" >
+				<div class="my-card mt-5" style="margin-top:120px; opacity: 1;">
+								
+					<div class="container text-center">
+						<!-- <img style="width:80px;" th:src="@{/image/membership.png}" alt="this is icon"> -->
+					</div>
+					<h1 class="text-center text-primary sign_up_title">Login</h1>
+					 <div th:if="${param.error}" class="alert alert-danger signin_error_message" >
+					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					 <span aria-hidden="true">&times;</span>
+ 					 </button>
+					 	Invalid username and password
+					 </div>
+					 <div th:if="${param.logout}" class="alert alert-success signin_error_message" >
+					 	you have been loged out
+					 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					 <span aria-hidden="true">&times;</span>
+ 					 </button>
+					 </div>
+		 
+				<form th:action="@{/dologin}" action="#" method="post" class="bg-white p-4 form_box">
+		
+						
+								
+					<div class="form-group form_content_box">
+					    <label for="exampleInputEmail1">Username</label>
+					    <input type="text" name="username" required="required"  
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter username">
+					</div>
+					  
+					 
+					  
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">Password</label>
+					    <input type="password" name="password" class="form-control"  id="exampleInputPassword" 
+					    aria-describedby="passwdHelp" placeholder="Enter your password">
+					  </div>
+					  
+					<div class="container text-center">
+					  <button type="submit" class="btn bg-primary login-button text-white mt-4" onclick="showspinner()">Login</button>
+					  <button type="reset" class="btn btn-warning login-button mt-4" >Reset</button>
+					  <a th:href="@{/forgot-password}" class="signin_register_btn">Forgot Password?</a>
+					  <a th:href="@{/signup}" class="signin_register_btn mr-3">Register/</a>
+					</div>
+				</form>
+			</div>	
+		</div>		
+	<!-- <div class="loader" id="spiner"></div>-->
+	 
+	
+	 </div>
+	 <div class="spinner_container">
+	 <div class="spinner">
+		  <div class="bar1"></div>
+		  <div class="bar2"></div>
+		  <div class="bar3"></div>
+		  <div class="bar4"></div>
+		  <div class="bar5"></div>
+		  <div class="bar6"></div>
+		  <div class="bar7"></div>
+		  <div class="bar8"></div>
+		  <div class="bar9"></div>
+		  <div class="bar10"></div>
+		  <div class="bar11"></div>
+		  <div class="bar12"></div>
+</div>
+</div>
+	</section>
+</body>
+</html>

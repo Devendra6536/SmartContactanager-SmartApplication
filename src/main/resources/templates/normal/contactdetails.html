@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>User dashboard</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" media="all" />
+</head>
+<body>
+
+	<section>
+	<div role="alert" th:if="${session.message}" th:classappend="${session.message.type}" class="alert" 
+		style="width:98%;margin:17px auto; height:53px;background-color: #248046; color:white;">
+				   	<p class="text-center" th:text="${session.message.content}"></p>
+				    <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+		<div class="card mr-3 ml-3 mt-4" th:if="${contact}">
+			<div class="card-body">
+				<div class="container text-center">
+					<img th:src="'/image/' +${contact.image}" style="height:200px; width:200px;" class="profile-photo"alt="profile photo" />
+					 <h1 th:text="${contact.name} +' ' + ${contact.secondname}"></h1>
+				
+				<div class="text-center table-div">
+				<table class="table-borderless tablesss text-left ">
+							  <thead>
+							    <tr>
+							      <th style="width:7%">Id &nbsp :&nbsp</th>
+							      <td style="width:60%; font-style: italic; font-weight:900;" th:text="'SCM2023' + ${contact.cid}"></td>
+							      <th style="width:10%">Name &nbsp:&nbsp</th>
+							      <td style="width:60%" th:text="${contact.name} + ' ' +  ${contact.secondname}"></td>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <th style="width:10%">Phone &nbsp :&nbsp</th>
+							      <td style="width:60%" th:text="${contact.phone}" ></td>
+							      <th style="width:10%">Email &nbsp:&nbsp</th>
+							      <td style="width:60%" th:text="${contact.email}"></td>
+							    </tr>
+							    <tr>
+							      <th style="width:10%">Work &nbsp:&nbsp</th>
+							      <td style="width:60%" th:text="${contact.work}" ></td>
+							      <th style="width:15%">Nickname &nbsp:&nbsp</th>
+							      <td style="width:60%" th:text="${contact.secondname}"></td>
+							    </tr>
+							  </tbody>
+						</table>
+						
+						<div style="text-align: left;width:80%;" class="mt-5" >
+							<p th:utext="${contact.description}" ></p>
+						</div>
+						
+						<div class="mt-5" style="width: 72%;">
+						    <a th:href="@{/user/view-contacts/0}" class="float-left btn btn-primary" ><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>Back</a>
+							<button type="reset" th:onclick="|deleteContact(${contact.cid})|" class="btn btn-danger " style="float: right;" >Delete</button>
+							<form style="display:inline;" th:action="@{'/user/updatecontact/' + ${contact.cid}}" method="post">
+							<button type="submit" class="btn btn-primary" style="float: right;margin-right:10px;">Update</button>
+							</form>
+						</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h1 th:unless="${contact}" class="text-center text-white p-3 bg-danger mt-3" >
+				You don't have permission to see this contact...</h1>
+			</div>
+		</section>
+	</body>
+</html>

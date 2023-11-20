@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<section>
+					
+		 <div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage.type}" 
+			 style="position: absolute; top: 12%; left: 73%; background-color: #ffc107; color: black; padding: 20px; font-weight: 700; border-radius: 5px;">
+			 <h3>Change password?</h3>
+			<p class="text-center" th:text="${session.PasswdChangemessage.content}"></p>
+		 <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+
+		<!-- this is the chat icon in the bottom right conrner -->
+		<div class="help_container" onclick="openChatBox()"></div>
+
+		<div class="container"  id="help-container-box" >
+
+
+			<div class="row ">
+				<div class="col-md-7 offset-md-6">
+					<div class="card">
+						<div class="card-body">
+							<h1 class="text-center mt-2 text-primary text-upper">Contact Us</h1>
+							<form th:action="@{/Support}" action="#" method="POST" class="mt-3">
+								<div class="form-group help_contaner_input_field">
+									<label for="name"> Name</label>
+									<input type="text" class="form-control" name="name" id="name" required placeholder="Enter your Name">
+								</div>
+
+								<div class="form-group help_contaner_input_field" >
+									<label for="email"> Email</label>
+									<input type="email" class="form-control" name="email" id="email" required placeholder="Enter your email">
+								</div>
+
+								<div class="form-group help_contaner_input_field">
+									<label for="phone"> Phone</label>
+									<input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter your contact number">
+								</div>
+								
+								<div class="form-group help_contaner_input_field">
+									<label for="address"> Address </label>
+									<input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address">
+								</div>
+								<div class="form-group help_contaner_input_field">
+									<label for="mytextarea"> Message </label>
+									<textarea name="description" id="mytextarea" cols="45" rows="6" class="form-control" 
+					  		        placeholder="Type your message"></textarea>
+								</div>
+							
+								<div class="container text-center">
+									<button type="submit" class="btn bg-primary login-button text-white mt-4" >Send message</button>
+									<button type="reset" class="btn btn-warning login-button mt-4" >Reset</button>
+									<button type="button" class="btn btn-danger login-button mt-4" onclick="closeHelpContainerBox()" >Close</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+
+		<div class="banner">
+			<div class="text-center">
+				<h1 class="font-weight-bold">Smart Contact Manager system</h1>
+				<p> Smart contact manager collecting the contact in a very efficient way and simplify the client requirement to
+				manage the contacts</p>
+				<a class="btn bg-primary btn-lg text-white" th:href="@{/user/addcontact}">Get Start</a>
+				
+			</div>
+		</div> 
+		
+		
+		<div class="containers2">
+		<div class="contentbox">
+			<p>hello we are giving the faster and well defined simulation of the contact to run the whole Org.
+			we provide the end to end service for contact saving in the real time database to easily get the 
+			information of the user.
+			</p>
+			<p>
+			Quick to Scale. Easy to Deploy. Omnichannel Support. Custom Solutions. Robust Analytics. Increase 
+			Engagement & Resolve Tickets Faster with Zendesk Customer Management...
+			</p>
+		</div>
+		</div>
+		
+		<div class="containers3">
+			<div class="contentbox3">
+				<div class="contentbox3_container">
+					<img alt="" th:src="@{/image/contact2.avif}">
+				</div >
+				<div class="img_desc">
+				<p>hello we are giving the faster and well defined simulation of the contact to run the whole Org.
+				we provide the end to end service for contact saving in the real time database to easily get the 
+				information of the user.
+				</p>
+				</div>
+			</div>
+			
+			<div class="contentbox3">
+			<div class="contentbox3_container">
+			<img alt="" th:src="@{/image/contact4.avif}">
+			</div>
+			<div class="img_desc">
+				<p>
+				Quick to Scale. Easy to Deploy. Omnichannel Support. Custom Solutions. Robust Analytics. Increase 
+				Engagement & Resolve Tickets Faster with Zendesk Customer Management...
+				</p>
+				</div>
+			</div>
+			<div class="contentbox3">
+			<div class="contentbox3_container">
+				<img alt="" th:src="@{/image/contact5.avif}">
+			</div>
+			<div class="img_desc">
+				<p>
+				Quick to Scale. Easy to Deploy. Omnichannel Support. Custom Solutions. Robust Analytics. Increase 
+				Engagement & Resolve Tickets Faster with Zendesk Customer Management...
+				</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="containers4">
+			<div class="boxes">
+				<h2>Smartcontactmanager : A steps toward cloud</h2>
+				<p> We provide the cloud storage for saving the contacts and information of the personal one. 
+				Our services is end to end towards the cloud. Any user can access the information through the mobile phone as
+				well as.
+				
+				</p>
+				<a th:href="@{/user/addcontact}" class="btn btn-warning" style="float: left;margin-top:30px;">Get Start</a>
+			</div>
+			
+		</div>
+		<div class="containers5">
+			<div class="boxes">
+				<h2>Smartcontactmanager : A steps toward cloud</h2>
+				<p> We provide the cloud storage for saving the contacts and information of the personal one. 
+				Our services is end to end towards the cloud. Any user can access the information through the mobile phone as
+				well as.
+				
+				</p>
+			</div>
+			
+		</div>
+	
+	</section>
+</body>
+</html>

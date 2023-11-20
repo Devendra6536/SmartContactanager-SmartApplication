@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css" media="all" />
+<link rel="stylesheet" th:href="@{/css/signin.css}" media="all" />
+<title></title>
+</head>
+<body>
+
+	<section class="sign_up_section" style="background: url('../image/container_image1.jpg'); background-size: cover;">
+		
+		<div  th:if="${session.message}" th:classappend="${session.message.type}" 
+			 style="position: absolute; top: 12%; left: 85%; background-color: #ffc107; color: black; padding: 20px; font-weight: 700; border-radius: 5px;">
+			 <h3>Forgot password?</h3>
+			<p class="text-center" th:text="${session.message.content}"></p>
+		 <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+		
+		
+		
+		<div class="container sign_in_box" style="height:900px;display:flex; justify-content: center;align-items: center;">
+			<div class="col-md-8 offset-md-1">
+				<div class="my-card mt-5" style="margin-top:250px; opacity: 1;">
+					
+					
+					
+				<div role="alert" th:if="${session.message}" th:classappend="${session.message.type}" class="alert" >
+				   	<p class="text-center" th:text="${session.message.content}"></p>
+				    <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+				</div>
+					<div class="container text-center">
+						<img style="width:80px;" th:src="@{/image/membership.png}" alt="this is icon">
+					</div>
+					<h1 class="text-center text-center text-primary sign_up_title">Register here</h1>
+					 
+		 
+				<form th:action="@{/do_register}" method="POST" th:object="${user}" class="bg-white p-4 form_box">				
+					<div class="form-group form_content_box">
+					    <label for="exampleInputEmail1">Username</label>
+					    <input type="text" name="username" th:value="${user.username}" th:classappend=" ${#fields.hasErrors('username')} ? 'is-invalid' : ' '"
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter username">
+					     
+					     <div th:each="e : ${#fields.errors('username')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     
+					     </div>
+					</div>
+					  
+					  
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">Email address</label>
+					    <input type="email" name="email" class="form-control"  th:value="${user.email}" id="exampleInputEmail1" 
+					    th:classappend=" ${#fields.hasErrors('email')} ? 'is-invalid' : ' ' "
+					    aria-describedby="emailHelp" placeholder="Enter your email">
+					    
+					    <div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					    
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">Password</label>
+					    <input type="password" name="passwd" class="form-control" th:value="${user.passwd}" id="exampleInputPassword"
+					    th:classappend=" ${#fields.hasErrors('passwd')} ? 'is-invalid' : '  '" 
+					    aria-describedby="passwdHelp" placeholder="Enter your password">
+					    <div th:each="e : ${#fields.errors('passwd')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					    
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					  		<textarea name="about" id="" cols="30" rows="6" class="form-control" 
+					  		th:classappend=" ${#fields.hasErrors('about')} ? 'is-invalid' : '  '" 
+					  		th:value="${user.about}" placeholder="Enter something about yourself"></textarea>
+					  		<div th:each="e : ${#fields.errors('about')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					    
+					    </div>
+					  </div>
+					  <div class="form-check">
+					    <input type="checkbox" name="agreement" class="form-check-input" id="agreement">
+					    <label class="form-check-label" for="exampleCheck1">Agree term and conditions</label>
+					  </div>
+					   
+					<div class="container text-center">
+					  <button type="submit" class="btn bg-primary login-button text-white mt-4" >Sign Up</button>
+					  <button type="reset" class="btn btn-warning login-button mt-4" >Reset</button>
+					  <a th:href="@{/signin}" class="signin_register_btn">Sign in?</a>
+					</div>
+				</form>
+			</div>	
+		</div>		
+	 </div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/about.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/css/signin.css}" media="all" />
+    <title th:text="${title}"> Smart contact manager</title>
+    
+  </head>
+  <body>
+    
+    	 <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #25236b;">
+  <a class="navbar-brand" th:href="@{/}">Smart Contact Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto text-uppercase nav_sec">
+      <li class="nav-item">
+        <a class="nav-link nav_link " th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav_link" th:href="@{/user/index}">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav_link" th:href="@{/about}">About</a>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link nav_link" th:href="@{/signin}" >Login</a>
+      </li>
+      <!-- <li class="nav-item" >
+        <a class="nav-link nav_link" th:href="@{/signup}">Signup</a>
+      </li> -->
+    </ul>
+     
+  </div>
+</nav>
+	
+    <div class="container" th:replace="${content}">
+    	
+    	
+    </div>
+    
+    
+    <!--Important link from source https://bootsnipp.com/snippets/rlXdE-->
+
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- Footer -->
+  <section id="footer">
+  <div class="footer_container">
+    <div class="box_container">
+      	<div class="boxes">
+      		<h3>Useful Links</h3>
+      		<ul>
+      			<li><a href="#"><i class="fa-solid fa-angle-right"></i>Home</a></li>
+      			<li><a href="#"><i class="fa-solid fa-angle-right"></i>Contact</a></li>
+      			<li><a th:href="@{/user/faq}"><i class="fa-solid fa-angle-right"></i>faq</a></li>
+      			<li><a th:href="@{/forgot-password}"><i class="fa-solid fa-angle-right"></i>forget passowrd</a></li>
+      		</ul>
+      	</div>
+      	<div class="boxes">
+      	<h3>Services</h3>
+	      	<ul>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>Contact management</a></li>
+	      		<li><a th:href="@{/user/profile}"><i class="fa-solid fa-angle-right"></i>User information</a></li>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>Integrated info collection</a></li>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>Omnichannel Support</a></li>
+	      	</ul>
+      	</div>
+      	<div class="boxes">
+      	<h3>Follow me</h3>
+      		<ul>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>facebook</a></li>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>Instagram</a></li>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>Github</a></li>
+	      		<li><a href="#"><i class="fa-solid fa-angle-right"></i>gmail</a></li>
+	      	</ul>
+      	</div>
+      	<div class="boxes">
+      	<h3>About us</h3>
+      	<p>hello we are giving the faster and well defined simulation of the contact to run the whole Org.
+			we provide the end to end managing services of the information.
+			</p>
+      	</div>
+      	</div>
+      	<div class="footer_description">
+      		<p> &copy; 2023 Contact manager system. | Terms of Use | <a href="#">Privacy Policy</a> </p>
+      	</div>
+    </div>
+  
+  </section>
+  <!-- ./Footer -->
+
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script type="text/javascript" th:src="@{/js/payment.js}"></script>
+  </body>
+</html>

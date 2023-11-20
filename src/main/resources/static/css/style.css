@@ -1,0 +1,355 @@
+body{
+	background: #e2e2e2;
+}
+
+ a.active {
+  /*  border: 2px solid blue;  */
+  border-radius: 5px;
+  background-color: blue; 
+  color: white;
+  }
+
+.bg-primary{
+	background: #009688 !important;
+}
+/*.banner{
+	width:100%;
+	height:99vh;
+	background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url(../image/contact1.1.avif);
+	background-size: cover;
+	color:white;
+	padding:25px;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	margin-top:15px;
+}
+.my-card{
+	width:100%;
+	padding:20px;
+	background:#FFFFFF;
+	margin-top:50px;
+}*/
+
+/* .sign_up_section{
+	
+	background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5));
+	width:100%;
+	height:120vh;
+}
+ */
+.sign_up_title{
+	text-transform: uppercase;
+	font-weight:bold;
+	font-size:25px;
+	
+}
+
+.dp{
+	background:url("../Gallery1/Photo11.jpg");
+	/*background:url("https://avatars.githubusercontent.com/u/88203724?v=4");*/
+	background-size:cover;
+	width:28rem;
+	height:28rem;
+	border-radius: 50%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin:0px auto;
+}
+
+/* .signin_in_box{
+	width:50rem;
+	height:600px;
+}
+.signin_error_message{
+	text-align: center;
+	width:90%;
+	margin:20px auto;
+}
+.signin_register_btn{
+	float: right;
+	margin:30px -10px;
+} */
+/* this is the footer css */
+/*.footer_container{
+	margin-top:100px;
+	background: #343a40;
+	padding: 35px 25px 1px 25px;
+}
+.box_container{
+	display: flex;
+	justify-content: space-around;
+}
+.boxes{
+	margin:0px;
+	text-align: left;
+	width: 250px;
+	color:white;
+}
+
+.boxes ul{
+	list-style: none;
+	margin: 0x;
+	padding: 0px;
+}
+.boxes ul li a {
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none;	
+}*/
+ /*.footer_description{
+	margin:auto;
+	text-align: center;
+}
+.footer_description p{
+	color: white;
+	font-weight: 600;
+}
+.footer_description{
+	padding-top: 20px;
+    padding-bottom: 1px;
+    text-align: center;
+}
+*/
+
+
+/*
+
+.sidebar{
+	width: 18%;
+	background:#fff;
+	height:100vh;
+	position:fixed;
+	padding-top: 25px;
+	display: block;
+	margin-top:10px;
+}
+.sidebar a{
+	display: block;
+	width:100%;
+	padding: 10px 25px;	
+	text-decoration: none;
+}
+ i{
+	margin-right:5px;
+}
+.sidebar a:hover{
+	background: #ccc;
+	width:100%;
+	
+}
+.sidebar .divider{
+	height:.5px;
+	width:100%;
+	background: #e2e2e2;
+}
+.close_sidebar{
+	padding:0px 20px;
+	margin:-20px 0px 45px 0px;
+}
+.close-btn{
+	background:none;
+	float:right;
+	border:none;
+	font-weight: 600;
+	font-size:35px;
+}
+.dropdown-menu{
+	background-color: grey;
+}
+.dropdown-menu a{
+	color: white;
+	border-bottom:2px solid grey;
+	font-weight:500;
+	
+}*/
+
+/*.content{
+	margin-top: 42px;
+	margin-left:19%;
+	margin-right:1%;
+}
+
+.togglemenu_bar{
+	width: 100%;
+	height: 45px;
+	margin-top: 38px;
+    margin-bottom: -10px
+}*/
+/*mobile based size*/
+
+@media only screen and (max-width:600px){
+	.sidebar{
+		display:none;
+		width: 80% !important;
+		background:#fff;
+		height:100vh;
+		position: fixed;
+		padding-top: 25px;
+	}
+	
+	.my-card{
+		z-index: 0;
+	}
+	.sidebar{
+		z-index:1;
+	}
+	.content{
+		margin-left:0% !important;
+	}
+	.box_container{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.boxes{
+		margin-top:25px;
+	}
+}
+
+
+/* 
+.contact_box{
+	margin:0px;
+	width: 100%;
+}
+
+        .image_button {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+
+        .image_button input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        }
+         */
+        
+   
+
+
+@keyframes progress-pf82op {
+   100% {
+      inset: 0;
+   }
+}
+
+/*.carousel-inner{
+	height:600px !important;
+}
+.containers2{
+	background:url("../image/contact2.avif");
+	display:flex;
+	height:800px;
+	background-size: cover;
+	padding:100px 10px;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	
+}
+.contentbox{
+	width:40%;
+	background:#e2e2e2;
+	border-radius: 15px;
+	padding:10px 25px;
+	opacity: 0.8;
+}
+.containers3{
+	background:url("../image/contact3.avif");
+	display:flex;
+	height:800px;
+	background-size: cover;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	padding: 0px 10px;
+}
+.contentbox3{
+	width:30%;
+	height:50%;
+	border-radius: 15px;
+	margin:10px 25px;
+	background: #e2e2e2;
+}
+.contentbox3 p{
+	color:black;
+}
+.contentbox3 img{
+	width:100%;
+	height:200px;
+	
+}
+.contentbox3_container{
+	height:50%;
+	width: 100%;
+	background: white;
+}
+.img_desc{
+	margin:10px 0px;
+	padding: 0px 10px;
+}
+
+
+
+.containers4{
+	display: flex;
+}
+.containers4 .boxes{
+	width: 500px;
+	height: 400px;
+	background: red;
+	margin:25px;
+}*/
+
+.lebel-margin{
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+.tox-tinymce{
+	width:100%;
+}
+
+
+.profile-photo{
+	width: 45px;
+	height: 45px;
+	object-fit:cover;
+	border-radius:50%;
+}
+.table-div{
+	display: flex;
+	align-items: center;
+	margin-top:50px;
+	flex-direction: column;
+}
+.tablesss{
+	width: 80%;
+}
+.tablesss td{
+  text-align: left;
+}
+.tablesss th{
+	text-align:right;
+}
+
+.home_page{
+	margin:0px 0px;
+	height:100%;
+	width: 100%;
+	
+}
+

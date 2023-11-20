@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+
+
+<title></title>
+</head>
+<body>
+
+	<section>
+	<div class="container contact_box">
+			<div class="col-md-9 offset-md-4">
+				<div class="my-card mt-5">
+					<div class="container text-center">
+						<img style="width:80px;" th:src="@{/image/membership.png}" alt="this is icon">
+					</div>
+					<h1 class="text-center text-center text-primary sign_up_title">Update Your Contact</h1>
+					
+		 <div role="alert" th:if="${session.message}" th:classappend="${session.message.type}" class="alert" >
+				   	<p class="text-center" th:text="${session.message.content}"></p>
+				    <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
+		</div>
+		
+		
+				<form th:action="@{/user/process-update}" action="#" method="POST" 
+				enctype="multipart/form-data"
+				th:object="${contact}" class="bg-white p-4 form_box">	
+				<input type="hidden" name="cid" th:value="${contact.cid}" />
+				<div class="input-group mt-4">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fa fa-plus"></i>
+							
+						</div>
+					</div>
+					<input type="text" name="name" th:value="${contact.name}" required th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ' '"
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter name here">
+					     <div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     
+					     </div>
+				</div>	
+				
+				<div class="input-group mt-3">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fas fa-user-alt"></i>
+							
+						</div>
+					</div>
+					<input type="text" name="secondname" th:value="${contact.secondname}" required  th:classappend="${#fields.hasErrors('secondname')} ? 'is-invalid' : ' '"
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter Secondname">
+					     <div th:each="e : ${#fields.errors('secondname')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     
+					     </div>
+				</div>	
+				
+				
+				<div class="input-group mt-3">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fa-solid fa-envelope"></i>
+						</div>
+					</div>
+					<input type="email" name="email" class="form-control"  required th:value="${contact.email}"  th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ' '" id="exampleInputEmail1" 
+					    aria-describedby="emailHelp" placeholder="Enter your email">	
+					    <div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     </div>	
+				</div>	
+				
+				
+				<div class="input-group mt-3">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fa-solid fa-phone"></i>
+						</div>
+					</div>
+					<input type="text" name="phone" th:value="${contact.phone}" min="10" max="13" required th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : ' '"
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter your phone">
+					      <div th:each="e : ${#fields.errors('phone')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     
+					     </div>
+				</div>	
+				
+				<div class="input-group mt-3">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fa-solid fa-briefcase"></i>
+						</div>
+					</div>
+					<input type="text" name="work" th:value="${contact.work}" required th:classappend="${#fields.hasErrors('work')} ? 'is-invalid' : ' '"
+					     class="form-control" id="exampleInputEmail1" placeholder="Enter your work here">
+					      <div th:each="e : ${#fields.errors('work')}" th:text="${e}" class="invalid-feedback display_error" id="validationServer03Feedback">
+					     
+					     </div>
+				</div>	
+				
+				
+				
+			
+				<div class="input-group mt-3">
+					<textarea name="description" id="mytextarea" cols="45" rows="15" class="form-control" 
+					  		th:text="${contact.description}" placeholder="Enter description"></textarea>
+				</div>	
+				
+				<div class="container text-center">
+					<img style="height:200px; width:200px;" class="profile-photo mt-2  img-fluid "  th:src="@{'/image/' + ${contact.image}}" alt="image" />
+				</div>
+				<p class="text-secondary">Choose a new profile picture</p>
+				<div class="input-group mt-3">
+					<!-- <label class="lebel-margin" for="image">Upload image</label> -->
+					<input type="file" name="profileimage" id="image" />
+				</div>	
+				
+				
+					<div class="container text-center">
+					  <button type="submit" class="btn bg-primary login-button text-white mt-4" >Update</button>
+					  <button type="reset" class="btn btn-warning login-button mt-4" >Reset</button>
+					  <a th:href="@{/user/view-contacts/0}" class="signin_register_btn">View contact?</a>
+					</div>
+				</form>
+			</div>	
+		</div>		
+	 </div>
+	 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	 <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+	</section>
+	
+</body>
+</html>

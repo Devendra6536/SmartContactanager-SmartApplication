@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<section>
+		<div class="dp_parent_container">
+		<div class="text-center">
+		
+			<div class="dp">
+				 <img th:src="@{../image/contact.image}" alt="" />
+			</div>
+			<div class="container">
+			<h2 class="font-weight-bold" >Hello this is <span style="text-transform:uppercase;font-style: italic;" th:text="${user.username}"></span> </h2>
+			<p> from Software developement in java backend engineer</p>
+			<p>Hello, I am <b>Software Engineer( backend engineer )</b> and I am from <b>Budaun.</b> I am an eager
+               learner and joyful person who sees opportunity in every difficulty. I am proficient in Coding and
+               know <b>C, C++, Java, Javascript</b>. Moreover i know <b>Java Backend Development</b>  and make the role based authentication .I have worked on the linux operating and 
+               have some knowledge of shell scripting.                   
+            </p>
+            <p>Technology I worked on <b>Java spring boot, Spring mvc, hibernate,  
+               jpa, javascript, back-end-development, shell sccripting .</b>
+            </p>
+            <p>Tools I used <b> MySql, eclipse, postman, git, github</b>
+            </p>
+		</div>
+		</div>
+		</div>
+	</section>
+</body>
+</html>
