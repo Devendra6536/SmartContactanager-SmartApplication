@@ -68,6 +68,12 @@ body{
 
 		color: white;
 	}
+	.alert_box{
+		z-index: 1;
+		width: 100%;
+		left:0;
+	}
+
 }
 
         

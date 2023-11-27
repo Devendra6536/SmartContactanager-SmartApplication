@@ -12,8 +12,7 @@
 		
 		
 		
-		<div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage}"  class="alert_box"
-			 style="position: absolute; top: 12%; left: 80%; background-color: #ffc107; color: black; padding: 20px; font-weight: 700; border-radius: 5px;">
+		<div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage}"  class="alert_box" style="background-color: green;">
 			 <h3>Forgot password?</h3>
 			<p class="text-center" th:text="${session.PasswdChangemessage}"></p>
 		 <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>

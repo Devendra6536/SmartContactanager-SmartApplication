@@ -271,7 +271,15 @@
 	height:120vh;
 }
 
-
+.alert_box{
+	position: absolute; 
+	top: 9%; left: 77%;
+	background-color: red; 
+	color: white;
+	padding: 15px; 
+	font-weight: 700;
+	border-radius: 5px;
+}
 
 
 @media only screen and (max-width:600px){
@@ -319,9 +327,11 @@
 	}
 	
 	.alert_box{
+		left: 7%;
 		z-index: 1;
-		left: -50px;
-		width: 100%;
+		width: 90%;
+		height: 15%;
+		font-size: 15px;
 	}
 
 	.sign_in_inner_box{

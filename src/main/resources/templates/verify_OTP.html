@@ -13,8 +13,7 @@
 	
 
 		<!-- OTP BOX -->
-		<div role="alert" th:if="${session.message}"  class="alert_box"
-		style="position: absolute; top: 9%; left: 77%;background-color: red; color: white; padding: 20px; font-weight: 700;border-radius: 5px;">
+		<div role="alert" th:if="${session.message}"  class="alert_box">
 				<h3>Forgot Password?</h3>
 				   	<p class="text-center" th:text="${session.message.content}"></p>
 				    <th:block th:text="${@sessionHelper.removeAttributeThrroughSession()}"></th:block>
