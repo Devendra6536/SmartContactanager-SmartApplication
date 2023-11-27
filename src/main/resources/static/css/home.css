@@ -299,6 +299,8 @@
 	
 	.containers4 .boxes{
 		width: 396px;
+		height:400px;
+		padding-left: 25px;
 	}
 	.containers5{
 		flex-direction: column;
@@ -307,16 +309,25 @@
 		width:100%;
 	}
 	.containers5 .boxes{
-		width: 435px;
+		width: 340px;
 		height:400px;
-		padding:50px;
+		padding:25px;
 	}
 	.containers5 .boxes p{
 		margin-top:20px;
 		font-weight: 900;
 	}
 	
+	.alert_box{
+		z-index: 1;
+		left: -50px;
+		width: 100%;
+	}
 
+	.sign_in_inner_box{
+		width: 100%;
+		margin-left: 0px;
+	}
 	/* help container */
 	
 }

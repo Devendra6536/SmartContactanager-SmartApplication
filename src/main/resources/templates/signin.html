@@ -12,7 +12,7 @@
 		
 		
 		
-		<div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage}" 
+		<div  th:if="${session.PasswdChangemessage}" th:classappend="${session.PasswdChangemessage}"  class="alert_box"
 			 style="position: absolute; top: 12%; left: 80%; background-color: #ffc107; color: black; padding: 20px; font-weight: 700; border-radius: 5px;">
 			 <h3>Forgot password?</h3>
 			<p class="text-center" th:text="${session.PasswdChangemessage}"></p>
@@ -22,9 +22,9 @@
 		
 		
 		
-		<div class="container sign_in_box"  style="height:920px; display:flex; justify-content: center;align-items: center;">
-			<div class="col-md-6 offset-md-1" >
-				<div class="my-card mt-5" style="margin-top:120px; opacity: 1;">
+		<div class="container sign_in_box"  style=" display:flex; justify-content: center;align-items: center;">
+			<div class="col-md-8 offset-md-1 sign_in_inner_box" >
+				<div class="my-card mt-5" style="margin-top:90px; opacity: 1;">
 								
 					<div class="container text-center">
 						<!-- <img style="width:80px;" th:src="@{/image/membership.png}" alt="this is icon"> -->

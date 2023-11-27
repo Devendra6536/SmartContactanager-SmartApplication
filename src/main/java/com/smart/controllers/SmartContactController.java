@@ -190,7 +190,7 @@ public class SmartContactController {
 					+ " </h2>"
 					+ "</div>"
 					+ "<div style='margin-top:150px; padding:20px; color:blue;' >"
-					+ "<h2>Smartcontactmanager : A steps toward cloud</h2>"
+					+ "<h2>Smartcontactmanager : A steps towards cloud</h2>"
 					+ "<p>We provide the cloud storage for saving the contacts and information of the personal one."
 					+ "<br>Our services is end to end towards the cloud. Any user can <br>access the information through the mobile"
 					+ "</div>"

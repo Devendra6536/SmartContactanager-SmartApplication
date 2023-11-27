@@ -4,10 +4,14 @@
 	width:100%;
 	height:104vh;
 }
+.my-card{
+  width: 100%;
+  height: 100%;
+}
 
 .sign_in_box{
-	width:78rem;
-	height:600px;
+	width:60rem;
+  height: 800px;
 }
 .signin_error_message{
 	text-align: center;
@@ -24,31 +28,52 @@
 	 	width: 100%;
 	 }
  	.sign_in_box {
-    	width: 150%;
+      height: 700px;
+    	width: 100%;
     	display: block;
 	}
 	
 	.my-card{
-	width: 66%;
+	  width:110%;
+    height: 120%;
+    padding: 20px;
 	}
+  .sign_in_inner_box{
+    height: 56%;
+   }
 	.spinner_container{
-		height: 325px;
-		width: 300px; 
-		top: 28%;
-		left: 38%;
+		  top: 70%;
+	    left: 20%; 
 	}
 	
 }
+@media only screen and (max-width:400px){
+
+  .sign_in_inner_box{
+    height: 56%;
+   }
+  .my-card{
+	  width:104%;
+    height: 100%;
+    padding: 20px;
+	}
+  .spinner_container{
+    top: 70%;
+    left: 10%; 
+}
+ 
+}
+
 
 /*This is the loader spinner css*/
 
 .spinner_container{
-	height: 530px;
-	width: 525px; 
+	height: 120px;
+	width: 120px; 
 	background-color: white;
 	position: absolute;
-	top: 25%;
-	left: 38%; 
+	top: 41%;
+	left: 49%; 
 	display:none;
 	
 }
@@ -56,17 +81,17 @@
 
 div.spinner {
   position: absolute;
-  width: 54px;
-  height: 54px;
+  width: 69px;
+  height: 69px;
   display: inline-block;
-  margin-left: 46%;
-  margin-right: 42%;
+  /* margin-left: 46%;
+  margin-right: 42%; */
   background: #74a6f2;
   padding: 10px;
   border-radius: 10px;
   display: none;
-  top: 50%;
-  left: 0%;
+  top: 25%;
+  left: 20%;
 }
 
 div.spinner div {
