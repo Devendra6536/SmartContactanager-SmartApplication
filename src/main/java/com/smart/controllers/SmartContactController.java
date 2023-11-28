@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,17 +114,11 @@ public class SmartContactController {
 			session.setAttribute("message", new Message("Successfully registered !!", "alert-success"));
 
 			// Email sent to user
-			/*
-			 * boolean send_email =
-			 * this.sendEmail.send_email("You are successfully registered!",
-			 * user.getEmail(),
-			 * " Registration Successfully ");
-			 * if (send_email == true) {
-			 * System.out.println("Success : email sent successfully");
-			 * } else {
-			 * System.err.println("Error : email not sent");
-			 * }
-			 */
+			  boolean send_email = this.sendEmail.send_email("You are successfully registered!",
+			  user.getEmail(), " Registration Successfully "); if (send_email == true) {
+			  System.out.println("Success : email sent successfully"); } else {
+			  System.err.println("Error : email not sent"); }
+			 
 
 			contactManagerLogger
 					.writeContactManagerlog("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
@@ -133,7 +126,10 @@ public class SmartContactController {
 					+ " You are Successfully sign Up ";
 			contactManagerLogger.writeContactManagerlog(log_message_to_write);
 			contactManagerLogger.writeContactManagerlog("\n");
-			System.out.println("about page Logs write successfully");
+			
+			//saving the user into the csv file
+			contactManagerLogger.writeRegisteredUserToCSVfile(user.getUsername(), user.getEmail());
+			
 
 			return "signup";
 		} catch (Exception e) {

@@ -60,4 +60,31 @@ public class ContactManagerLogger {
 		}
 
 	}
+	
+	
+	//this method is used for saving the user into a csv files
+	public void writeRegisteredUserToCSVfile(String name, String email) throws IOException {
+		try {
+			// Writing Date into the log file
+			LocalDateTime date = LocalDateTime.now();
+
+			// this is the date formatter
+			DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			String formatedDate = date.format(formater);
+
+			System.out.println("Today date is " + formatedDate);
+			String filePath = "/home/team/devendra/JavaBackendDevelopment/SpringbootProjects/contactmanager/logs/RegisteredUsers.csv";
+			try (FileWriter logger = new FileWriter(filePath, true);
+
+					PrintWriter printWriter = new PrintWriter(logger);) {
+				printWriter.print(name + "|" + email + " \n ");
+			}
+
+			System.out.println(" User is successfully saved into the CSV files ");
+		} catch (Exception e) {
+			System.err.println("ERROR " + e);
+			e.printStackTrace();
+		}
+
+	}
 }
