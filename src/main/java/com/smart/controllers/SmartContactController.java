@@ -292,7 +292,7 @@ public class SmartContactController {
 			System.out.println("Your password is successfully recoverd");
 			session.setAttribute("module", "Forgot password?");
 			session.setAttribute("PasswdChangemessage",
-					user.getUsername() + " Your password is successfully recovered");
+					user.getUsername() + "! Your password is successfully recovered");
 
 			// writing the logs into the files
 			String log_message_to_write = " You are changing the Password";
