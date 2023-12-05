@@ -55,11 +55,9 @@ public class SmartContactController {
 		contactManagerLogger.writeContactManagerlog("");
 		contactManagerLogger.writeContactManagerlog("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-		contactManagerLogger.writeContactManagerlog("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 		contactManagerLogger.writeContactManagerlog("");
-		System.out.println("home page Logs write successfully");
+		
 
-		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
 		return "home";
 	}
@@ -71,8 +69,6 @@ public class SmartContactController {
 		// writing the logs into the files
 		String log_message_to_write = " You are accessing the about page";
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-		System.out.println("about page Logs write successfully");
-
 		return "about";
 	}
 
@@ -154,7 +150,6 @@ public class SmartContactController {
 				.writeContactManagerlog("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
 		String log_message_to_write = " You are logout";
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-		System.out.println("about page Logs write successfully");
 		contactManagerLogger.writeContactManagerlog("\n");
 
 		return "about";
@@ -300,9 +295,7 @@ public class SmartContactController {
 			contactManagerLogger
 					.writeContactManagerlog("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 			contactManagerLogger.writeContactManagerlog(log_message_to_write);
-			contactManagerLogger.writeContactManagerlog("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 			contactManagerLogger.writeContactManagerlog("");
-			System.out.println(" successfully");
 			System.out.println("\n\n");
 
 			return "signin";
@@ -329,9 +322,6 @@ public class SmartContactController {
 		String log_message_to_write = name + "," + email + "," + phone + "," + address;
 		System.err.println("QUERY \"" + log_message_to_write + "\"");
 		contactManagerLogger.writeSupportQueriesToCSVfile(log_message_to_write);
-		// contactManagerLogger.writeSupportQueriesToCSVfile("Thank You ! we have
-		// recieved your query");
-		// contactManagerLogger.writeSupportQueriesToCSVfile("");
 		System.out.println(" your query is successfully saved\n\n");
 
 		// writing access log

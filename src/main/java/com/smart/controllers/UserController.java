@@ -35,7 +35,9 @@ import com.razorpay.RazorpayException;
 import com.smart.config.CustomUserDetails;
 import com.smart.dao.UserRepository;
 import com.smart.dao.ContactRepository;
+import com.smart.dao.MyorderRepository;
 import com.smart.entities.Contact;
+import com.smart.entities.MyOrder;
 import com.smart.entities.User;
 import com.smart.helper.FileSaver;
 import com.smart.helper.Message;
@@ -55,6 +57,9 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	private MyorderRepository myorderRepository;
 
 	@Autowired
 	private SendEmail sendEmail;
@@ -67,7 +72,7 @@ public class UserController {
 	public void getUserForAllhandler(Model model, Principal principal) {
 		String userName = principal.getName();
 		User user = this.userRepository.getUserByUserName(userName);
-		System.out.println(user.getUsername() + " you are successfully loged in");
+		System.out.println(user.getUsername() + " you are successfully loged in\n");
 		model.addAttribute("user", user);
 		System.out.println("userName --->>> " + principal.getName());
 
@@ -101,9 +106,7 @@ public class UserController {
 		String log_message_to_write = user.getUsername() + " : You are successfully loged in";
 		contactManagerLogger.writeContactManagerlog("\n");
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-
 		contactManagerLogger.writeContactManagerlog("                        ");
-		System.out.println("Logs write successfully");
 
 		return "normal/user_dashboard";
 	}
@@ -154,36 +157,7 @@ public class UserController {
 			return "normal/contactform";
 		}
 
-		/*
-		 * try {
-		 * 
-		 * if(result.hasErrors()) {
-		 * System.out.println("there are some error " + result);
-		 * return "normal/contactform";
-		 * }
-		 * if(contact.getEmail().equals("")) {
-		 * System.out.println("email can't be empty");
-		 * throw new Exception("oh no email field is empty");
-		 * }
-		 * contact.setImage("default.png");
-		 * Contact saved_contact = this.contactRepository.save(contact);
-		 * System.err.println("Contact saved in db"+ saved_contact.toString());
-		 * session.setAttribute("message", new
-		 * Message("Contact Added successfully","alert-success"));
-		 * model.addAttribute("contact", new Contact());
-		 * return "normal/contactform";
-		 * 
-		 * } catch (Exception e) {
-		 * // TODO: handle exception
-		 * e.printStackTrace();
-		 * model.addAttribute("contact", contact);
-		 * System.out.println("error is occured");
-		 * session.setAttribute("message", new
-		 * Message("Contact is not added ! Something went werong", "alert-danger"));
-		 * return "normal/contactform";
-		 * 
-		 * }
-		 */
+	
 	}
 
 	/* Handler for the purpose of viewing all the saved contacts */
@@ -265,7 +239,6 @@ public class UserController {
 		user.getConatcts().remove(contact);
 		this.userRepository.save(user);
 		session.setAttribute("message", new Message("Contact is deleted successfully", "alert-success"));
-
 		System.err.println("contact is successfully deleted");
 
 		// write the log
@@ -278,7 +251,6 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Logs write successfully");
 
 		return "redirect:/user/view-contacts/0";
 	}
@@ -340,7 +312,6 @@ public class UserController {
 		// write the log
 		String log_message_to_write = " You are accesing the user profile ";
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-		System.out.println("Logs write successfully");
 
 		return "normal/profile";
 	}
@@ -399,7 +370,7 @@ public class UserController {
 
 	@PostMapping("/create_order")
 	@ResponseBody
-	public String createOrder(@RequestBody Map<String, Object> data) throws RazorpayException {
+	public String createOrder(@RequestBody Map<String, Object> data, Principal principal) throws RazorpayException {
 		System.err.println("PAYMENT DATA" + data);
 
 		int amount = Integer.parseInt(data.get("amount").toString());
@@ -414,10 +385,24 @@ public class UserController {
 		//creating the payment order
 		Order order = client.orders.create(orderRequest);
 		System.out.println("ORDER " + order);
+		
 		//you can save this order in the database
+		MyOrder myorder = new MyOrder();
+		myorder.setAmount(order.get("amount").toString());
+		myorder.setReceipt(order.get("receipt"));
+		myorder.setMyOrderId(order.get("order_id"));
+		myorder.setPaymentId(null);
+		myorder.setStatus("created");
+		myorder.setUser(this.userRepository.getUserByUserName(principal.getName()));
+		
+		this.myorderRepository.save(myorder);
+		
+		
 		
 		System.err.println("Payment order created");
 		return order.toString();
 	}
 
+	
+	
 }
