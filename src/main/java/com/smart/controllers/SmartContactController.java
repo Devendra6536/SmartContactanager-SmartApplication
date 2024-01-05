@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smart.contactlog.ContactManagerLogger;
@@ -79,9 +78,9 @@ public class SmartContactController {
 		return "signup";
 	}
 
-	@RequestMapping(value = "/do_register", method = RequestMethod.POST)
-	public String doRegister(@Valid @ModelAttribute("user") User user, BindingResult results,
-			@RequestParam(value = "agreement", defaultValue = "false") boolean agreement, Model model,
+	@PostMapping("/do_register")
+	public String doRegister(@Valid @ModelAttribute User user, BindingResult results,
+			@RequestParam(defaultValue = "false") boolean agreement, Model model,
 			HttpSession session) {
 
 		try {
@@ -162,7 +161,7 @@ public class SmartContactController {
 	}
 
 	@PostMapping("/forgot-password/send-otp")
-	public String forgotPasswordSendOTP(@RequestParam("email") String email, Model model, HttpSession session) {
+	public String forgotPasswordSendOTP(@RequestParam String email, Model model, HttpSession session) {
 
 		System.out.println("EMAIL " + email);
 		model.addAttribute("ttile", "verify OTP");
@@ -277,8 +276,8 @@ public class SmartContactController {
 	}
 
 	@PostMapping("/changepassword")
-	public String changePassword(Principal principal, @RequestParam("password") String password,
-			@RequestParam("cpassword") String cpassword, HttpSession session) throws IOException {
+	public String changePassword(Principal principal, @RequestParam String password,
+			@RequestParam String cpassword, HttpSession session) throws IOException {
 
 		User user = this.userRepository.getUserByUserName((String) session.getAttribute("email"));
 		if (password.equals(cpassword)) {
@@ -309,9 +308,9 @@ public class SmartContactController {
 	}
 
 	@RequestMapping("/Support")
-	public String supportController(@RequestParam("name") String name, @RequestParam("email") String email,
-			@RequestParam("phone") String phone,
-			@RequestParam("address") String address, @RequestParam("description") String description,
+	public String supportController(@RequestParam String name, @RequestParam String email,
+			@RequestParam String phone,
+			@RequestParam String address, @RequestParam String description,
 			HttpSession session, Principal principal) throws IOException {
 
 		// User user = this.userRepository.getUserByUserName(principal.getName());

@@ -121,7 +121,7 @@ public class UserController {
 
 	/* this handler for saving the contact into the database */
 	@PostMapping("/savecontact")
-	public String addContact(@Valid @ModelAttribute("contact") Contact contact, BindingResult result, Model model,
+	public String addContact(@Valid @ModelAttribute Contact contact, BindingResult result, Model model,
 			HttpSession session, Principal principal,
 			@RequestParam("myfile") MultipartFile file) {
 
@@ -167,7 +167,7 @@ public class UserController {
 	 * current page = page
 	 */
 	@RequestMapping("/view-contacts/{page}")
-	public String viewContactList(@PathVariable("page") Integer page, Model model, Principal principal)
+	public String viewContactList(@PathVariable Integer page, Model model, Principal principal)
 			throws IOException {
 		String name = principal.getName();
 		User user = userRepository.getUserByUserName(name);
@@ -201,12 +201,12 @@ public class UserController {
 	public String openGallery(Model model) {
 		List<String> jpgImageList = new ArrayList<>();
 		for (int i = 1; i < 19; i++) {
-			Integer ii = new Integer(i);
+			Integer ii = Integer.valueOf(i);
 			jpgImageList.add(ii.toString());
 		}
 		List<String> webpImageList = new ArrayList<>();
 		for (int i = 20; i < 39; i++) {
-			Integer ii = new Integer(i);
+			Integer ii = Integer.valueOf(i);
 			webpImageList.add(ii.toString());
 		}
 
@@ -328,8 +328,8 @@ public class UserController {
 	}
 
 	@PostMapping("/change-password")
-	public String changePassword(@RequestParam("oldPassword") String oldPassword,
-			@RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword,
+	public String changePassword(@RequestParam String oldPassword,
+			@RequestParam String newPassword, @RequestParam String confirmPassword,
 			Principal principal, Model model, HttpSession session) {
 
 		model.addAttribute("title", "Change Password");

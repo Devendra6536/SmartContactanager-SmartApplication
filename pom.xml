@@ -21,9 +21,9 @@
 		
 		<!--mail dependance-->
 		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>jakarta.mail</artifactId>
-		    <version>2.0.1</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 		
 				
@@ -38,6 +38,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -58,11 +63,6 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-		<dependency>
-		    <groupId>javax.validation</groupId>
-		    <artifactId>validation-api</artifactId>
-		    <version>2.0.1.Final</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>
@@ -75,7 +75,6 @@
 			<dependency>
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-starter-security</artifactId>
-			    <version>3.1.2</version>
 			</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
@@ -83,7 +82,7 @@
 			<groupId>com.razorpay</groupId>
 			<artifactId>razorpay-java</artifactId>
 			<version>1.4.4</version>
-		</dependency>	
+		</dependency>
 
 
 
