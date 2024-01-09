@@ -41,6 +41,10 @@ public class Contact {
 	private String image;
 	@Column(length = 50000)
 	private String description;
+
+
+
+	
 	public User getUser() {
 		return user;
 	}

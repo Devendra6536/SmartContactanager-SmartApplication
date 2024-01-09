@@ -22,6 +22,9 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 	/* Using the HQL hive query language */
 	  @Query("from Contact as c where c.user.id =:userId")
 	  public Page<Contact> findContactsByUser(@Param("userId") int userId, Pageable pageable);
+
+	  @Query("from Contact as c where c.user.id =:userId")
+	  public List<Contact> findContactsByUserId(@Param("userId") int userId);
 	  
 	  
 	//using native sql

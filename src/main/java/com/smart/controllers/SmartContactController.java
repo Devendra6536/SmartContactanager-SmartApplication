@@ -2,10 +2,16 @@ package com.smart.controllers;
 
 import jakarta.validation.Valid;
 
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Random;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -206,7 +212,6 @@ public class SmartContactController {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println("Error");
 		}
 
@@ -328,6 +333,65 @@ public class SmartContactController {
 		contactManagerLogger.writeContactManagerlog(" You are submitting the support queries");
 		contactManagerLogger.writeContactManagerlog("your query is successfully saved");
 
+		return "home";
+	}
+	
+	
+	
+	
+	@GetMapping("/export-contacts")
+	public String exportUserData() {
+		try {
+			//InputStream fp = new FileInputStream("testcases.xlsx");
+			//Workbook wb = WorkbookFactory.create(fp);			
+			/*Cell cell = row.getCell(0);
+			if(cell != null) {
+				System.out.println("Cell Data is " + cell);
+			}
+			else {
+				System.out.println("Cell is empty");
+			}*/
+			
+			
+			
+			
+			
+			
+			Workbook wb = new HSSFWorkbook();
+			Sheet sheet = wb.createSheet("Inspector");
+			Row row = sheet.createRow(0);
+			row.createCell(0).setCellValue("Devendra Kumar");
+			row.createCell(1).setCellValue("8630834625");
+			
+			row = sheet.createRow(1);
+			row.createCell(0).setCellValue("Inspector");
+			row.createCell(1).setCellValue("In Custom");
+			
+			row = sheet.createRow(2);
+			row.createCell(0).setCellValue("Delhi");
+			row.createCell(1).setCellValue("NehruNager");
+
+			row = sheet.createRow(3);
+			row.createCell(0).setCellValue("Garhikhanpur");
+			row.createCell(1).setCellValue("Budaun");
+			
+			row = sheet.createRow(4);
+			row.createCell(0).setCellValue("BSA");
+			row.createCell(1).setCellValue("Sambhal");
+			 
+			FileOutputStream fp = new FileOutputStream("Inspectors.xlsx");
+			wb.write(fp);
+			fp.close();
+			wb.close();
+			
+			System.out.println("Inspectors file has been generated successfully.");  
+			
+			
+		}
+		catch (Exception e) {
+			System.err.println("Error");
+			e.printStackTrace();
+		}
 		return "home";
 	}
 }

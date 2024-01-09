@@ -2,6 +2,7 @@ package com.smart.controllers;
 
 import com.smart.contactlog.ContactManagerLogger;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -9,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -403,6 +408,43 @@ public class UserController {
 		return order.toString();
 	}
 
-	
+
+	@GetMapping("/export-contacts")
+	public String ExportTheUserContacts(Principal principal) {
+		List<Contact> contacts =  contactRepository.findContactsByUserId(userRepository.getUserByUserName(principal.getName()).getId());
+
+			int num_of_row = contacts.size();
+			Workbook wb = new HSSFWorkbook();
+			Sheet sheet = wb.createSheet("Inspector");	
+			  
+			try{
+				for(int i=0;i<num_of_row;i++){
+					Row row = sheet.createRow(i);
+
+					row.createCell(0).setCellValue(contacts.get(i).getCid());
+					row.createCell(1).setCellValue(contacts.get(i).getName());
+					row.createCell(5).setCellValue(contacts.get(i).getSecondname());
+					row.createCell(2).setCellValue(contacts.get(i).getPhone());
+					row.createCell(3).setCellValue(contacts.get(i).getEmail());
+					row.createCell(4).setCellValue(contacts.get(i).getWork());
+					row.createCell(6).setCellValue(contacts.get(i).getDescription());
+					row.createCell(6).setCellValue(contacts.get(i).getImage());
+				}
+
+				FileOutputStream fp = new FileOutputStream("Inspectors.xlsx");
+				wb.write(fp);
+				fp.close();
+				wb.close();
+				System.out.println("Inspectors file has been generated successfully.");
+
+			}catch(Exception e){
+				System.err.println("ERROR!");
+				e.printStackTrace();
+			}
+
+			
+			return "home";
+	}
+			
 	
 }
