@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -410,28 +413,46 @@ public class UserController {
 
 
 	@GetMapping("/export-contacts")
-	public String ExportTheUserContacts(Principal principal) {
+	public String ExportTheUserContacts(Model model ,Principal principal, HttpSession session) {
 		List<Contact> contacts =  contactRepository.findContactsByUserId(userRepository.getUserByUserName(principal.getName()).getId());
+
+
+
+			model.addAttribute("title", "Export Contacts");
+			session.setAttribute("message", new Message("Contact is Successfully exported", "alert-success"));
 
 			int num_of_row = contacts.size();
 			Workbook wb = new HSSFWorkbook();
 			Sheet sheet = wb.createSheet("Inspector");	
-			  
+			Row row =  sheet.createRow(0);
+
+			
+					row.createCell(0).setCellValue("ID");
+					row.createCell(1).setCellValue("Name");
+					row.createCell(2).setCellValue("Secondname");
+					row.createCell(3).setCellValue("Phone");
+					row.createCell(4).setCellValue("Email");
+					row.createCell(5).setCellValue("Work");
+					row.createCell(6).setCellValue("Description");
+					row.createCell(7).setCellValue("Image");
 			try{
 				for(int i=0;i<num_of_row;i++){
-					Row row = sheet.createRow(i);
+					row = sheet.createRow(i+1);
 
 					row.createCell(0).setCellValue(contacts.get(i).getCid());
 					row.createCell(1).setCellValue(contacts.get(i).getName());
-					row.createCell(5).setCellValue(contacts.get(i).getSecondname());
-					row.createCell(2).setCellValue(contacts.get(i).getPhone());
-					row.createCell(3).setCellValue(contacts.get(i).getEmail());
-					row.createCell(4).setCellValue(contacts.get(i).getWork());
+					row.createCell(2).setCellValue(contacts.get(i).getSecondname());
+					row.createCell(3).setCellValue(contacts.get(i).getPhone());
+					row.createCell(4).setCellValue(contacts.get(i).getEmail());
+					row.createCell(5).setCellValue(contacts.get(i).getWork());
 					row.createCell(6).setCellValue(contacts.get(i).getDescription());
-					row.createCell(6).setCellValue(contacts.get(i).getImage());
+					row.createCell(7).setCellValue(contacts.get(i).getImage());
 				}
 
-				FileOutputStream fp = new FileOutputStream("Inspectors.xlsx");
+
+
+
+				FileOutputStream fp = new FileOutputStream("/home/team/Desktop/ContactApp/SmartContactanager-SmartApplication/Inspectors.xlsx");
 				wb.write(fp);
 				fp.close();
 				wb.close();
@@ -443,7 +464,8 @@ public class UserController {
 			}
 
 			
-			return "home";
+			//return "home";
+			return "redirect:/user/view-contacts/0";
 	}
 			
 	
