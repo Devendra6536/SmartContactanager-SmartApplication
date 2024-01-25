@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -13,10 +15,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,18 +28,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smart.contactlog.ContactManagerLogger;
+import com.smart.dao.ContactRepository;
 import com.smart.dao.UserRepository;
+import com.smart.entities.Contact;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.helper.SendEmail;
 
 import jakarta.servlet.http.HttpSession;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 public class SmartContactController {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ContactRepository contactRepository;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -394,4 +403,21 @@ public class SmartContactController {
 		}
 		return "home";
 	}
+	
+	
+	
+	@RequestMapping("/view-all-contacts")
+	public ResponseEntity<List<Contact>> fetchContactList() throws IOException {
+		String name = "swetakumari@gmail.com";
+		User user = userRepository.getUserByUserName(name);
+		List<Contact> contacts = this.contactRepository.getAllContacts();
+		
+		// write the log
+		String log_message_to_write = " Api is called by FRONT END Angular project ";
+		contactManagerLogger.writeContactManagerlog(log_message_to_write);
+		System.out.println("Logs write successfully");
+
+		return ResponseEntity.of(Optional.of(contacts));
+	}
+
 }
