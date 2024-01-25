@@ -13,7 +13,7 @@ target/
 .springBeans
 .sts4-cache
 *.xlsx
-.logs
+*.logs
 
 ### IntelliJ IDEA ###
 .idea
