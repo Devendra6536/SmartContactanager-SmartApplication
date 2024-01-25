@@ -456,18 +456,18 @@ public class UserController {
 			row.createCell(5).setCellValue("Work");
 			row.createCell(6).setCellValue("Description");
 			row.createCell(7).setCellValue("Image");
-			 sheet = wb.createSheet("Inspectors");	
-			 row =  sheet.createRow(0);
-
-			
-					row.createCell(0).setCellValue("ID");
-					row.createCell(1).setCellValue("Name");
-					row.createCell(2).setCellValue("Secondname");
-					row.createCell(3).setCellValue("Phone");
-					row.createCell(4).setCellValue("Email");
-					row.createCell(5).setCellValue("Work");
-					row.createCell(6).setCellValue("Description");
-					row.createCell(7).setCellValue("Image");
+//			 sheet = wb.createSheet("Inspector");	
+//			 row =  sheet.createRow(0);
+//
+//			
+//					row.createCell(0).setCellValue("ID");
+//					row.createCell(1).setCellValue("Name");
+//					row.createCell(2).setCellValue("Secondname");
+//					row.createCell(3).setCellValue("Phone");
+//					row.createCell(4).setCellValue("Email");
+//					row.createCell(5).setCellValue("Work");
+//					row.createCell(6).setCellValue("Description");
+//					row.createCell(7).setCellValue("Image");
 			try{
 				for(int i=0;i<num_of_row;i++){
 					row = sheet.createRow(i+1);
@@ -485,7 +485,7 @@ public class UserController {
 
 
 
-				FileOutputStream fp = new FileOutputStream("/home/team/Desktop/ContactApp/SmartContactanager-SmartApplication/Inspectors.xlsx");
+				FileOutputStream fp = new FileOutputStream("/home/team/devendra/JavaBackendDevelopment/SpringbootProjects/contactmanager/Inspectors.xlsx");
 				wb.write(fp);
 				fp.close();
 				wb.close();
