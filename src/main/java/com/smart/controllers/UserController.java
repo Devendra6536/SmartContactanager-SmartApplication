@@ -444,7 +444,6 @@ public class UserController {
 
 			int num_of_row = contacts.size();
 			Workbook wb = new HSSFWorkbook();
-<<<<<<< HEAD
 			Sheet sheet = wb.createSheet("Inspector");			
 			Row row =  sheet.createRow(0);
 			
@@ -457,9 +456,8 @@ public class UserController {
 			row.createCell(5).setCellValue("Work");
 			row.createCell(6).setCellValue("Description");
 			row.createCell(7).setCellValue("Image");
-=======
-			Sheet sheet = wb.createSheet("Inspector");	
-			Row row =  sheet.createRow(0);
+			 sheet = wb.createSheet("Inspectors");	
+			 row =  sheet.createRow(0);
 
 			
 					row.createCell(0).setCellValue("ID");
@@ -470,7 +468,6 @@ public class UserController {
 					row.createCell(5).setCellValue("Work");
 					row.createCell(6).setCellValue("Description");
 					row.createCell(7).setCellValue("Image");
->>>>>>> 58985c1f37169edb5384d1977d7ed434a0038678
 			try{
 				for(int i=0;i<num_of_row;i++){
 					row = sheet.createRow(i+1);
@@ -499,11 +496,7 @@ public class UserController {
 				e.printStackTrace();
 			}
 
-			
-<<<<<<< HEAD
-=======
-			//return "home";
->>>>>>> 58985c1f37169edb5384d1977d7ed434a0038678
+		//return "home";
 			return "redirect:/user/view-contacts/0";
 	}
 			
