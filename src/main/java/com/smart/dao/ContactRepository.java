@@ -25,14 +25,5 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
 	  @Query("from Contact as c where c.user.id =:userId")
 	  public List<Contact> findContactsByUserId(@Param("userId") int userId);
-	  
-	  
-	//using native sql
-		/*
-		 * @Query(value = "Select * from contacts as c where user_id =:userId",
-		 * nativeQuery =true) public List<Contact> findContactsByUser(@Param("userId")
-		 * int userId);
-		 */
-	  //this method for searching the contact using the keyword
 	  public List<Contact> findByNameContainingAndUser(String keyword,User user);
 }

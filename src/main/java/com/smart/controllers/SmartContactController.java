@@ -27,10 +27,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.javafaker.Faker;
 import com.smart.contactlog.ContactManagerLogger;
 import com.smart.dao.ContactRepository;
+import com.smart.dao.FakeUserRepository;
 import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
+import com.smart.entities.FakeUser;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.helper.SendEmail;
@@ -50,6 +53,9 @@ public class SmartContactController {
 
 	@Autowired
 	private SendEmail sendEmail;
+	
+	@Autowired
+	private FakeUserRepository fakeUserRepository;
 
 	@Autowired
 	private ContactManagerLogger contactManagerLogger;
@@ -409,15 +415,49 @@ public class SmartContactController {
 	@RequestMapping("/view-all-contacts")
 	public ResponseEntity<List<Contact>> fetchContactList() throws IOException {
 		String name = "swetakumari@gmail.com";
+		System.out.println("method called");
 		User user = userRepository.getUserByUserName(name);
 		List<Contact> contacts = this.contactRepository.getAllContacts();
 		
 		// write the log
 		String log_message_to_write = " Api is called by FRONT END Angular project ";
 		contactManagerLogger.writeContactManagerlog(log_message_to_write);
-		System.out.println("Logs write successfully");
-
+		System.out.println("Logs write successfully");		
 		return ResponseEntity.of(Optional.of(contacts));
+	}
+	
+	
+	
+	
+	//for generating the fake user for demos testing
+	@RequestMapping("/Genarate_fake_users")
+	public String saveFakeUser( @ModelAttribute FakeUser fakeUser) {
+		
+		Faker fc = new Faker();
+		
+		//setting the fake userData
+		
+		for(int i=0;i<1;i++) {
+			fakeUser = new FakeUser();
+			fakeUser.setFirstName(fc.name().firstName());
+			fakeUser.setLastName(fc.name().lastName());
+			fakeUser.setCountry(fc.address().country());
+			fakeUser.setState(fc.address().state());
+			fakeUser.setCity(fc.address().city());
+			this.fakeUserRepository.save(fakeUser);
+
+		}
+		return "home";
+	}
+	
+	@RequestMapping("/Get_All_fake_users")
+	public ResponseEntity<List<FakeUser>> fetchFakeUserList() throws IOException {
+		List<FakeUser> fakeUsers = this.fakeUserRepository.findAll();
+		String log_message_to_write = " Api is called by FRONT END Angular project ";
+		contactManagerLogger.writeContactManagerlog(log_message_to_write);
+		System.out.println("Logs write successfully");
+		
+		return ResponseEntity.of(Optional.of(fakeUsers));
 	}
 
 }
