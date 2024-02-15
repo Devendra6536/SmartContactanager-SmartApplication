@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -174,6 +175,26 @@ public class UserController {
 	 * No of entry per page = 5[n]
 	 * current page = page
 	 */
+	
+	/*this use this method for the purpose of*/ 
+	
+	@RequestMapping("/view-all-contacts")
+	public ResponseEntity<List<Contact>> fetchContactList(Principal principal) throws IOException {
+		String name = principal.getName();
+		User user = userRepository.getUserByUserName(name);
+		List<Contact> contacts = this.contactRepository.getAllContacts();
+		
+		// write the log
+		String log_message_to_write = " You are viewing All the contacts related the user FOR FRONT END ANGULAR PURPOSE ";
+		contactManagerLogger.writeContactManagerlog(log_message_to_write);
+		System.out.println("Logs write successfully");
+
+		return ResponseEntity.of(Optional.of(contacts));
+	}
+
+	
+	
+	
 	@RequestMapping("/view-contacts/{page}")
 	public String viewContactList(@PathVariable Integer page, Model model, Principal principal)
 			throws IOException {
@@ -423,18 +444,30 @@ public class UserController {
 
 			int num_of_row = contacts.size();
 			Workbook wb = new HSSFWorkbook();
-			Sheet sheet = wb.createSheet("Inspector");	
+			Sheet sheet = wb.createSheet("Inspector");			
 			Row row =  sheet.createRow(0);
-
 			
-					row.createCell(0).setCellValue("ID");
-					row.createCell(1).setCellValue("Name");
-					row.createCell(2).setCellValue("Secondname");
-					row.createCell(3).setCellValue("Phone");
-					row.createCell(4).setCellValue("Email");
-					row.createCell(5).setCellValue("Work");
-					row.createCell(6).setCellValue("Description");
-					row.createCell(7).setCellValue("Image");
+			
+			row.createCell(0).setCellValue("ID");
+			row.createCell(1).setCellValue("Name");
+			row.createCell(2).setCellValue("Secondname");
+			row.createCell(3).setCellValue("Phone");
+			row.createCell(4).setCellValue("Email");
+			row.createCell(5).setCellValue("Work");
+			row.createCell(6).setCellValue("Description");
+			row.createCell(7).setCellValue("Image");
+//			 sheet = wb.createSheet("Inspector");	
+//			 row =  sheet.createRow(0);
+//
+//			
+//					row.createCell(0).setCellValue("ID");
+//					row.createCell(1).setCellValue("Name");
+//					row.createCell(2).setCellValue("Secondname");
+//					row.createCell(3).setCellValue("Phone");
+//					row.createCell(4).setCellValue("Email");
+//					row.createCell(5).setCellValue("Work");
+//					row.createCell(6).setCellValue("Description");
+//					row.createCell(7).setCellValue("Image");
 			try{
 				for(int i=0;i<num_of_row;i++){
 					row = sheet.createRow(i+1);
@@ -452,7 +485,7 @@ public class UserController {
 
 
 
-				FileOutputStream fp = new FileOutputStream("/home/team/Desktop/ContactApp/SmartContactanager-SmartApplication/Inspectors.xlsx");
+				FileOutputStream fp = new FileOutputStream("/home/team/devendra/JavaBackendDevelopment/SpringbootProjects/contactmanager/Inspectors.xlsx");
 				wb.write(fp);
 				fp.close();
 				wb.close();
@@ -463,8 +496,7 @@ public class UserController {
 				e.printStackTrace();
 			}
 
-			
-			//return "home";
+		//return "home";
 			return "redirect:/user/view-contacts/0";
 	}
 			
