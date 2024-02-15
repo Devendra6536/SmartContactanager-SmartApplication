@@ -13,10 +13,13 @@ public class FakeUser {
 	private int Id;
 	private String firstName;
 	private String lastName;
-	private String country;
-	private String state;
-	private String city;
-	
+	private String email;
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -29,40 +32,26 @@ public class FakeUser {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getCountry() {
-		return country;
+	public String getEmail() {
+		return email;
 	}
-	public void setCountry(String country) {
-		this.country = country;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	@Override
-	public String toString() {
-		return "FakeUser [firstName=" + firstName + ", lastName=" + lastName + ", country=" + country + ", state="
-				+ state + ", city=" + city + "]";
-	}
-	public FakeUser(String firstName, String lastName, String country, String state, String city) {
+	public FakeUser(int id, String firstName, String lastName, String email) {
 		super();
+		Id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.country = country;
-		this.state = state;
-		this.city = city;
+		this.email = email;
 	}
 	public FakeUser() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "FakeUser [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 	
 	

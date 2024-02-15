@@ -2,10 +2,12 @@ package com.smart.controllers;
 
 import jakarta.validation.Valid;
 
-
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -24,8 +26,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.javafaker.Faker;
 import com.smart.contactlog.ContactManagerLogger;
@@ -35,6 +40,7 @@ import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
 import com.smart.entities.FakeUser;
 import com.smart.entities.User;
+import com.smart.helper.FileSaver;
 import com.smart.helper.Message;
 import com.smart.helper.SendEmail;
 
@@ -441,9 +447,6 @@ public class SmartContactController {
 			fakeUser = new FakeUser();
 			fakeUser.setFirstName(fc.name().firstName());
 			fakeUser.setLastName(fc.name().lastName());
-			fakeUser.setCountry(fc.address().country());
-			fakeUser.setState(fc.address().state());
-			fakeUser.setCity(fc.address().city());
 			this.fakeUserRepository.save(fakeUser);
 
 		}
@@ -459,5 +462,87 @@ public class SmartContactController {
 		
 		return ResponseEntity.of(Optional.of(fakeUsers));
 	}
+	
+	
+	@RequestMapping("/run-python-code")
+	public String runPythonCodeUsingJava() throws IOException {	
+		
+		
+		contactManagerLogger.writeContactManagerlog("Python shell is start for execution");
+		try {	
+			
+		ProcessBuilder builder = new ProcessBuilder("python3",System.getProperty("user.dir") + "/python/FakeDataGeneration.py");
+		Process process = builder.start();
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		BufferedReader reader1 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			
+			String lines = null;
+			while((lines = reader.readLine())!=null) { 
+				ArrayList<String> generatedData = new ArrayList<>();
+				String name = "";
+				int no_of_field = 1;
+				for(int i=0;i<lines.length();i++) {
+					
+					if(lines.charAt(i)==' ' && lines.charAt(i+1)==' ') {
+						continue;
+					}
+					else 
+					{
+						if(lines.charAt(i)!=' ') {
+							name +=lines.charAt(i);
+							if(i==lines.length()-1) {
+								generatedData.add(name);
+							}
+							
+						}
+						else {
+							switch (no_of_field) {
+							case 1:
+								generatedData.add(name);
+								break;
+							case 2:
+								generatedData.add(name);
+								break;
+							default:
+								break;
+							}
+							name="";
+							no_of_field++;
+						}
+					}
+				}
+				
+				System.out.println(lines);
+				if(no_of_field==3) System.out.println(generatedData);
+				if(no_of_field==3) {
+					FakeUser fakeUser = new FakeUser();
+					fakeUser.setFirstName(generatedData.get(0));
+					fakeUser.setLastName(generatedData.get(1));
+					fakeUser.setEmail(generatedData.get(2));
+					this.fakeUserRepository.save(fakeUser);
+					
+				}
+			}
+		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Error is occured");
+		}
+		contactManagerLogger.writeContactManagerlog("python code is successfully run");
+		return "FakeDataGeneration";
+	}
+	
+	
+	@PostMapping("/add_fake_user")
+	public FakeUser addfakeusers(@RequestBody FakeUser fakeUser) {
+		System.out.println("Saved user "+fakeUser);
+		System.out.println("Callled");
+		return this.fakeUserRepository.save(fakeUser);
+	}
+	
+	
+	
 
 }

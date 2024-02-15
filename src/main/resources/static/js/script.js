@@ -131,6 +131,21 @@ const closeHelpContainerBox = () =>{
 	close_help_container_box.style.display="none";
 }
 
+//this is for data generation box
+const openChatBox1 = () => {
+	let help_container = document.getElementById("help-container-box1");
+	help_container.style.display="block";
+
+	// remove the tinymice div
+	let warning_div = document.querySelectorAll(".tox-notification");
+	warning_div.style.display="none";
+	
+}
+const closeHelpContainerBox1 = () =>{
+	let close_help_container_box = document.getElementById("help-container-box1");
+	close_help_container_box.style.display="none";
+}
+
 
 const  openOTPBox = () => {
 	let forgot_password_box =  document.getElementById("forgot-password-box");

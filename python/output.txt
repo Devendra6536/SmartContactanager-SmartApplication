@@ -1,0 +1,11 @@
+
+               please find the below report of HRMS portal
+
+csa 1245
+
+                     Enter Choice of Data
+                     1. Data for current week
+                     2. Data for range of dates
+
+Sno.    Date                Time Spend     Total Time     In/Out's
+1       12-Feb-2024    ->   0:49:00        0h:49m         09:43 10:32 

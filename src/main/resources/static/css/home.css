@@ -366,6 +366,14 @@
 	
 		}
 
+		#help-container-box1{
+			height: 600px; 
+			margin-top: 100px; 
+			position: absolute;
+			display: none;
+			top: -20px;
+		}
+
 		.help_contaner_input_field{
 			width: 90%; 
 			margin: 0px auto 10px auto;
