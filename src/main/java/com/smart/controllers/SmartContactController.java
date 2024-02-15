@@ -66,12 +66,6 @@ public class SmartContactController {
 	@Autowired
 	private ContactManagerLogger contactManagerLogger;
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		model.addAttribute("title", "Home - smart contact manager");
-		return "home";
-	}
-
 	@RequestMapping("/")
 	public String landingPage(Model model) throws IOException {
 		model.addAttribute("title", "Home - smart contact manager");
@@ -87,6 +81,14 @@ public class SmartContactController {
 
 		return "home";
 	}
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+		model.addAttribute("title", "Home - smart contact manager");
+		return "home";
+	}
+
+
 
 	@RequestMapping("/about")
 	public String about(Model model) throws IOException {

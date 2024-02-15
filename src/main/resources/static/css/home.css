@@ -285,8 +285,7 @@
 @media only screen and (max-width:600px){
 	
 	.banner{
-		margin-top:56px;
-		height:900px;
+		height:600px;
 	}
 	
 	.containers2,.containers3{
@@ -383,13 +382,30 @@
 
 /* payment box*/
 		.payment-box{
+			height:150%;
+			width:103%;
 			background-color: white;
-			padding: 20px;
+			padding: 10px;
 			margin-top:20px;
 			color: black;
 			text-transform: capitalize;		
+			background-image: url("../image/114.jpg");
+			background-size: cover;
+
+		}
+		.payment-window img{
+			height: 100px;
+			width: 200px;
 		}
 		.payment-input-box{
 			margin: 50px auto;
-			width: 50%;
+			border: 2x solid green;
+			background-color: #e2e2e2;
+			width: 60%;
+
 		}
+		.payment-button{
+			margin: 0px;
+			font-size: 15px;
+		}
+		
