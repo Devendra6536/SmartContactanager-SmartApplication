@@ -25,7 +25,7 @@
 		<div class="container"  id="help-container-box" >
 
 
-			<div class="row ">
+			<div class="row">
 				<div class="col-md-7 offset-md-6">
 					<div class="card">
 						<div class="card-body">
@@ -71,20 +71,22 @@
 
 	</div>		 
 		<div class="banner">
-			<div class="text-center" style="margin-top:120px;">
-				<h1 class="font-weight-bold">Smart Contact Manager system</h1>
+			<div class="text-center" style="margin-top:1px;">
+				<h2 class="font-weight-bold"><b>S</b>mart Contact Manager system</h2>
 				<p> Smart contact manager collecting the contact in a very efficient way and simplify the client requirement to
 				manage the contacts</p>
 				<a class="btn bg-primary btn-lg text-white" th:href="@{/user/addcontact}">Get Start</a>
 
 
-				<div class="payment-box">
-					
-					<h1>Pay Now</h1>
+				<div class="payment-box payment-window" >
+					<!-- <img th:src="@{/image/114.jpg}" alt="this is payment window"> -->
+					<h1 style="color: blue;">Pay Now</h1>
 					<input type="text" class="form-control my-2 payment-input-box" name="" id="payment_field" placeholder="Enter amount here">
 					
 					<div class="container text-center mt-5">
-						<button class="btn btn-success" onclick="paymentStart()">Pay</button>
+						<button class="btn btn-success payment-button" onclick="paymentStart()"><i class="fa-brands fa-google-pay"></i>G Pay</button>
+						<button class="btn btn-warning payment-button" onclick="paymentStart()"><i class="fa-brands fa-cc-visa"></i>Paytm</button>
+						<button class="btn btn-primary payment-button" onclick="paymentStart()">Phonpe</button>
 					</div>
 				</div>
 							
