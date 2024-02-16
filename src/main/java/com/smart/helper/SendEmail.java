@@ -1,13 +1,20 @@
 package com.smart.helper;
+
+import java.io.File;
 import java.util.Date;
 import java.util.Properties;
+
 import org.springframework.stereotype.Component;
+
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
 import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 @Component
 public class SendEmail {
@@ -35,13 +42,14 @@ public class SendEmail {
 
 			@Override
 			protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
-				return new jakarta.mail.PasswordAuthentication("hjjjh", "dsadsfds");
+				// TODO Auto-generated method stub
+				return new jakarta.mail.PasswordAuthentication("devendra8682", "tglqwkuwrjcsgtak");
 			}
 
 		});
 
 		session.setDebug(true);
-		// compose the message {text, multimedia, attachment}//tglqwkuwrjcsgtak
+		// compose the message {text, multimedia, attachment}
 		MimeMessage mimeMessage = new MimeMessage(session);
 
 		try {
