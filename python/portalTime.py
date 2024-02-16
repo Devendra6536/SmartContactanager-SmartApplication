@@ -155,11 +155,11 @@ def cmd():
 
 cmd()
 # msg()
-G_username = 'CS11027'
-G_passwd = '@DKpal4512'
-GG_username = sys.argv[1]
-GG_passwd = sys.argv[2]
-print(GG_username, GG_passwd)
+#G_username = 'CS11027'
+#G_passwd = '@DKpal4512'
+G_username = sys.argv[1]
+G_passwd = sys.argv[2]
+#print(G_username, G_passwd)
 #G_username = input(' ' * 21 + 'Enter Username  : ')
 #G_passwd = getpass(' ' * 21 + 'Password(Hidden): ')
 print('\n' + ' ' * 21 + 'Enter Choice of Data\n' + ' ' * 21 + '1. Data for current week\n' + ' ' * 21 + '2. Data for range of dates\n')
