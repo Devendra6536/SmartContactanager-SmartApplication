@@ -399,6 +399,42 @@ public class UserController {
 		return "redirect:/user/index";
 	}
 
+	@PostMapping("/create_order")
+	@ResponseBody
+	public String createOrder(@RequestBody Map<String, Object> data, Principal principal) throws RazorpayException {
+		System.err.println("PAYMENT DATA" + data);
+
+		int amount = Integer.parseInt(data.get("amount").toString());
+		var client = new RazorpayClient("rzp_test_8pwtBHd42wsqob", "UFiw1qLBI8HamDUsofukDwHa");		
+		
+		JSONObject orderRequest = new JSONObject();
+		orderRequest.put("amount",amount);
+		orderRequest.put("currency","INR");
+		orderRequest.put("receipt", "txn_23545");
+		
+		
+		//creating the payment order
+		Order order = client.orders.create(orderRequest);
+		System.out.println("ORDER " + order);
+		
+		//you can save this order in the database
+		MyOrder myorder = new MyOrder();
+		myorder.setAmount(order.get("amount").toString());
+		myorder.setReceipt(order.get("receipt"));
+		myorder.setMyOrderId(order.get("order_id"));
+		myorder.setPaymentId(null);
+		myorder.setStatus("created");
+		myorder.setUser(this.userRepository.getUserByUserName(principal.getName()));
+		
+		this.myorderRepository.save(myorder);
+		
+		
+		
+		System.err.println("Payment order created");
+		return order.toString();
+	}
+
+
 	@GetMapping("/export-contacts")
 	public String ExportTheUserContacts(Model model ,Principal principal, HttpSession session) {
 		List<Contact> contacts =  contactRepository.findContactsByUserId(userRepository.getUserByUserName(principal.getName()).getId());
