@@ -3,6 +3,7 @@ public class Greet{
     public static void main(String[] args) {
         System.err.println("Hello how are you");
         System.out.print("This is used for learning the git purpose");
-        System.out.println("This is from the another branch")
+        System.out.println("This is from the another branch");
+        System.err.println("Hlo viewers");
     }
 }
